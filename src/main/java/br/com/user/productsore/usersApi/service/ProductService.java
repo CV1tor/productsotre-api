@@ -34,18 +34,6 @@ public class ProductService {
        productRepository.save(product);
     }
 
-    public void buyProduct(UUID id) {
-        Product product = findProductById(id);
-        int quantityAfterBuy = product.getQuantity() - 1;
-        if(quantityAfterBuy < 0) {
-            throw new ProductOutOfStockException();
-        }
-
-        product.setQuantity(quantityAfterBuy);
-
-        productRepository.save(product);
-    }
-
     public void removeProduct(UUID id) {
         Product product = findProductById(id);
 

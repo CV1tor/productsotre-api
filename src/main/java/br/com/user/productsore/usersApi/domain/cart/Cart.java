@@ -1,6 +1,7 @@
 package br.com.user.productsore.usersApi.domain.cart;
 
 import br.com.user.productsore.usersApi.domain.product.Product;
+import br.com.user.productsore.usersApi.domain.user.User;
 import jakarta.persistence.*;
 import jakarta.validation.constraints.NotNull;
 import lombok.*;
@@ -20,6 +21,10 @@ public class Cart implements Serializable {
     @Id
     @GeneratedValue(strategy = GenerationType.UUID)
     private UUID id;
+
+    @OneToOne
+    @JoinColumn(name="user_id", referencedColumnName = "id", nullable = false)
+    private User user;
 
     @ManyToMany
     @JoinTable(

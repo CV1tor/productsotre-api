@@ -33,4 +33,5 @@ public class UserService {
     public User findUserById(UUID id) {
         return userRepository.findById(id).orElseThrow(UserNotFoundException::new);
     }
+
 }

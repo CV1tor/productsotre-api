@@ -1,10 +1,7 @@
 package br.com.user.productsore.usersApi.conf;
 
 import br.com.user.productsore.usersApi.dto.ErrorDTO;
-import br.com.user.productsore.usersApi.exception.ProductNotFoundException;
-import br.com.user.productsore.usersApi.exception.ProductOutOfStockException;
-import br.com.user.productsore.usersApi.exception.TokenGenerationFailedException;
-import br.com.user.productsore.usersApi.exception.UserNotFoundException;
+import br.com.user.productsore.usersApi.exception.*;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.ControllerAdvice;
@@ -39,5 +36,12 @@ public class ExceptionHandler extends ResponseEntityExceptionHandler {
         ErrorDTO errorResponse = new ErrorDTO(HttpStatus.INTERNAL_SERVER_ERROR, exception.getMessage());
 
         return ResponseEntity.status(HttpStatus.INTERNAL_SERVER_ERROR).body(errorResponse);
+    }
+
+    @org.springframework.web.bind.annotation.ExceptionHandler(CartNotFoundException.class)
+    private ResponseEntity<ErrorDTO> cartNotFoundHandler(CartNotFoundException exception) {
+        ErrorDTO errorResponse = new ErrorDTO(HttpStatus.NOT_FOUND, exception.getMessage());
+
+        return ResponseEntity.status(HttpStatus.NOT_FOUND).body(errorResponse);
     }
 }

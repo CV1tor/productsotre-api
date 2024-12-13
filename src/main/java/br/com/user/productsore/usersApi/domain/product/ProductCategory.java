@@ -1,7 +1,7 @@
 package br.com.user.productsore.usersApi.domain.product;
 
 public enum ProductCategory {
-    ELECTRONICS("eletronics"),
+    ELECTRONICS("electronics"),
     CLOTHING("clothing"),
     BOOKS("books"),
     TOYS("toys");

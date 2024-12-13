@@ -2,6 +2,7 @@ package br.com.user.productsore.usersApi.controller;
 
 import br.com.user.productsore.usersApi.domain.cart.Cart;
 import br.com.user.productsore.usersApi.domain.product.Product;
+import br.com.user.productsore.usersApi.dto.CartDTO;
 import br.com.user.productsore.usersApi.dto.ProductOnCartDTO;
 import br.com.user.productsore.usersApi.dto.ProductToCartDTO;
 import br.com.user.productsore.usersApi.service.CartService;
@@ -34,6 +35,21 @@ public class CartController {
 
         return ResponseEntity.ok().build();
     }
+
+    @PutMapping("/{id}")
+    public ResponseEntity<Void> decreaseQuantity(@PathVariable UUID id) {
+        cartService.decreaseProductQuantity(id);
+
+        return ResponseEntity.ok().build();
+    }
+
+    @DeleteMapping("/{id}")
+    public ResponseEntity<Void> removeProductFromCart(@PathVariable UUID id) {
+        cartService.removeProductFromCart(id);
+
+        return ResponseEntity.ok().build();
+    }
+
 
     @DeleteMapping("/delete")
     public ResponseEntity<Void> removeCart() {

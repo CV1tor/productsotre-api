@@ -44,4 +44,25 @@ public class ExceptionHandler extends ResponseEntityExceptionHandler {
 
         return ResponseEntity.status(HttpStatus.NOT_FOUND).body(errorResponse);
     }
+
+    @org.springframework.web.bind.annotation.ExceptionHandler(CartProductNotFoundException.class)
+    private ResponseEntity<ErrorDTO> cartProductNotFoundHandler(CartProductNotFoundException exception) {
+        ErrorDTO errorResponse = new ErrorDTO(HttpStatus.NOT_FOUND, exception.getMessage());
+
+        return ResponseEntity.status(HttpStatus.NOT_FOUND).body(errorResponse);
+    }
+
+    @org.springframework.web.bind.annotation.ExceptionHandler(DecreasedProductNotOnCartException.class)
+    private ResponseEntity<ErrorDTO> decreasedProductNotOnCartHandler(DecreasedProductNotOnCartException exception) {
+        ErrorDTO errorResponse = new ErrorDTO(HttpStatus.INTERNAL_SERVER_ERROR, exception.getMessage());
+
+        return ResponseEntity.status(HttpStatus.INTERNAL_SERVER_ERROR).body(errorResponse);
+    }
+
+    @org.springframework.web.bind.annotation.ExceptionHandler(WalletNotFoundException.class)
+    private ResponseEntity<ErrorDTO> walletNotFoundHandler(WalletNotFoundException exception) {
+        ErrorDTO errorResponse = new ErrorDTO(HttpStatus.NOT_FOUND, exception.getMessage());
+
+        return ResponseEntity.status(HttpStatus.NOT_FOUND).body(errorResponse);
+    }
 }
